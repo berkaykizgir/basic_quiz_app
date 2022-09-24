@@ -19,6 +19,7 @@ class Answer extends StatelessWidget {
           onPressed: selectHandler,
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.transparent),
+              overlayColor: MaterialStateProperty.all(Colors.green.shade800),
               shadowColor: MaterialStateProperty.all(Colors.transparent)),
           child: Text(
             answerText,
