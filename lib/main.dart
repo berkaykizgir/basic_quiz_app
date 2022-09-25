@@ -16,21 +16,39 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
   late final AnimationController _controller;
   var _questionIndex = 0;
+  var _totalScore = 0;
 
   final _questions = [
     {
       'questionText': 'What\'s your favorite color?',
-      'answers': ['Blue', 'Red', 'White', 'Green']
+      'answers': [
+        {'text': 'Blue', 'score': 10},
+        {'text': 'Red', 'score': 8},
+        {'text': 'White', 'score': 6},
+        {'text': 'Green', 'score': 4}
+      ]
     },
     {
       'questionText': 'What\'s your favorite animal?',
-      'answers': ['Dog', 'Cat', 'Elephant']
+      'answers': [
+        {'text': 'Dog', 'score': 10},
+        {'text': 'Cat', 'score': 8},
+        {'text': 'Elephant', 'score': 6},
+      ]
     },
   ];
 
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
+    _totalScore += score;
     setState(() {
       _questionIndex++;
+    });
+  }
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
     });
   }
 
@@ -64,7 +82,10 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(controller: _controller),
+            : Result(
+                controller: _controller,
+                resultScore: _totalScore,
+                resetHandler: _resetQuiz),
       ),
     );
   }

@@ -10,10 +10,11 @@ class Answer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
+        height: 50,
         margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(colors: [Colors.cyan, Colors.indigo]),
-          borderRadius: BorderRadius.circular(20),
+        decoration: const ShapeDecoration(
+          gradient: LinearGradient(colors: [Colors.cyan, Colors.indigo]),
+          shape: StadiumBorder(),
         ),
         child: ElevatedButton(
           onPressed: selectHandler,
